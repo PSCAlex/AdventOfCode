@@ -1,0 +1,65 @@
+<script type="text/javascript">
+
+  var north, east, degree, input;
+
+  north = 0;
+  east = 0;
+  degree = 0;
+
+  //input = ["R2", "L3"];
+  //input = ["R2","R2","R2"];
+  //input = ["R5","L5","R5","R3"];
+
+ input = "R4, R1, L2, R1, L1, L1, R1, L5, R1, R5, L2, R3, L3, L4, R4, R4, R3, L5, L1, R5, R3, L4, R1, R5, L1, R3, L2, R3, R1, L4, L1, R1, L1, L5, R1, L2, R2, L3, L5, R1, R5, L1, R188, L3, R2, R52, R5, L3, R79, L1, R5, R186, R2, R1, L3, L5, L2, R2, R4, R5, R5, L5, L4, R5, R3, L4, R4, L4, L4, R5, L4, L3, L1, L4, R1, R2, L5, R3, L4, R3, L3, L5, R1, R1, L3, R2, R1, R2, R2, L4, R5, R1, R3, R2, L2, L2, L1, R2, L1, L3, R5, R1, R4, R5, R2, R2, R4, R4, R1, L3, R4, L2, R2, R1, R3, L5, R5, R2, R5, L1, R2, R4, L1, R5, L3, L3, R1, L4, R2, L2, R1, L1, R4, R3, L2, L3, R3, L2, R1, L4, R5, L1, R5, L2, L1, L5, L2, L5, L2, L4, L2, R3";
+
+  input = input.replace(/\s/g, '').split(",");
+
+  for(var i = 0; i < input.length; i++){
+
+    var direction = input[i][0];
+    var distance = Number(input[i].match(/\d+/g)[0]);
+    
+    if(direction == "R"){
+  		switch(degree){
+      	case 0:
+        	east += distance;
+          degree += 90;
+        	break;
+        case 90:
+          north -= distance;
+          degree += 90;
+        	break;
+        case 180:
+        	east -= distance;
+          degree += 90;
+        	break;
+        case 270:
+          north += distance;
+          degree = 0;
+        	break;
+      }
+    }else if (direction == "L"){
+    	switch(degree){
+      	case 0:
+          east -= distance;
+          degree = 270;
+          break;
+        case 90:
+          north += distance;
+          degree -= 90;
+          break;
+        case 180:
+          east += distance;
+          degree -= 90;
+          break;
+        case 270:
+          north -= distance;
+          degree -= 90;
+          break;
+      } 
+    }
+  }
+
+  alert("distance to easter bunny hq is " + (Math.abs(north + east)));
+
+</script>
