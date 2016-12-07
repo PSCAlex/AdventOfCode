@@ -43,7 +43,7 @@ readTextFile("file:///C:/Users/alexl/AdventOfCode/day6input.txt", function(file)
             }
         }
 
-        message += letters[count.indexOf(Math.max(...count))];
+        message += letters[count.indexOf(Math.min(...count))];
 
         letters = [];
         count = [];
